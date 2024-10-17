@@ -1,0 +1,20 @@
+#
+#
+#
+################################
+This is a simple crud application
+
+allowing adding, displaying,editing, and deleting records in the database.
+Date is 18/102024
+
+features completed
+1. create
+2. read
+3. update
+
+to be worked on:
+
+4. delete
+
+################################
+Added some bootstrap css framework.
