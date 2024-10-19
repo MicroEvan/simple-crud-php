@@ -1,5 +1,5 @@
 <?php
-namespace tutorial;
+include 'conn.php';
 
 define('FIELD_REQUIRED_MESSAGE', '<span style="color:red;">Field is required.</span><br>');
 define('DATA_ADDED_MESSAGE', '<span style="color:green;">Data Added Successfully.</span><br>');

@@ -17,4 +17,8 @@ to be worked on:
 4. delete
 
 ################################
-Added some bootstrap css framework.
+Added some bootstrap CSS framework.
+
+19/10/2014
+Added delete functionality
+

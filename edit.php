@@ -43,9 +43,12 @@ while($row = mysqli_fetch_array($results)){
             </tr>
             <tr>
                 <td><input type="hidden" name="id" value=<?php echo $_GET['id'];?>></td>
-                <td><input type="hidden" name="update" value="update"></td>
+                    <input class="btn btn-primary" type="submit" name="update" value="update">
+                    <a class="btn btn-secondary" href="index.php">Cancel</a>
             </tr>
+            <tr>
 
+            </tr>
         </table>
     </form>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
