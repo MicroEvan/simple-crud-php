@@ -1,4 +1,12 @@
 <?php
+session_start();
+
+// Check if user is logged in and is an admin
+if (!isset($_SESSION['user_id']) || $_SESSION['user_role'] !== 'admin') {
+    header("Location: login.php"); // Redirect to login if not logged in or not an admin
+    exit();
+}
+
 require_once 'conn.php';
 
  //getting id from url

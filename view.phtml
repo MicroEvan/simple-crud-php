@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certificate of Achievement</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .certificate-container {
+            max-width: 900px;
+            margin: auto;
+            padding: 40px;
+            background-color: white;
+            border: 5px solid #4CAF50;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .certificate-header {
+            font-size: 24px;
+            color: #4CAF50;
+            margin-bottom: 20px;
+        }
+        .certificate-details {
+            text-align: left;
+            margin: 20px 0;
+        }
+        .certificate-details b {
+            color: #333;
+        }
+        .certificate-details p {
+            margin: 5px 0;
+        }
+        .certificate-footer {
+            margin-top: 40px;
+            font-size: 14px;
+            color: #777;
+        }
+        .print-button {
+            margin-top: 20px;
+        }
+        .print-button input {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .print-button input:hover {
+            background-color: #45a049;
+        }
+    </style>
+    <script type="text/javascript">
+        function printpage() {
+            var printButton = document.getElementById("printpagebutton");
+            printButton.style.visibility = 'hidden';
+            window.print();
+            printButton.style.visibility = 'visible';
+        }
+    </script>
+</head>
+<body>
+    <div class="certificate-container">
+        <div class="certificate-header">
+            Certificate of Achievement
+        </div>
+        <div class="certificate-details">
+            <p><b>Cert No.:</b> CE <?php echo $result[0] ?> <?php echo $result[6] ?> - CE<?php echo date('m'); ?></p>
+            <p><b>Horse:</b> <?php echo $result[1] ?></p>
+            <p><b>Trailer:</b> <?php echo $result[2] ?></p>
+            <p><b>Driver:</b> <?php echo $result[3] ?></p>
+            <p><b>Date of Issue:</b> <?php echo $result[4] ?> <?php echo $result[5] ?> <?php echo $result[6] ?></p>
+            <p><b>Issued to:</b> <?php echo $result[7] ?></p>
+            <p><b>This Certificate Expires on:</b> <span style="color: #FF0000;"><?php echo $result[8] ?> <?php echo $result[9] ?> <?php echo $result[10] ?></span></p>
+        </div>
+        <div class="certificate-footer">
+            <p><b>Certificate search codes:</b></p>
+            <p><b>Reference Number:</b> 0000<?php echo ($result[4]+$result[6]*$result[8]+$result[10]); ?> <?php echo $result[4] ?> <?php echo $result[0] ?></p>
+            <p><b>Search code:</b> 000<?php echo $result[0] ?><?php echo ($result[4]*$result[6]*$result[8]*$result[10]); ?></p>
+            <p><b>Cert ID Number:</b> 0000<?php echo ($result[0]+$result[4]*$result[6]+$result[8]*$result[10]/$result[8]); ?></p>
+        </div>
+        <div class="print-button">
+            <input id="printpagebutton" type="button" value="Print Certificate" onclick="printpage()"/>
+        </div>
+    </div>
+</body>
+</html>
