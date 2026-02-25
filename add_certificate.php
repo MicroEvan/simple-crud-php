@@ -60,76 +60,95 @@ if (isset($_POST['Submit'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+    <title>New Certificate - Chato Certificates</title>
 </head>
 <body>
-    <div class="container mt-5">
-        <h2>Pressure Test Certificate</h2>
 
-        <?php if (!empty($errors)): ?>
-            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                <strong>Please fix the following:</strong>
-                <ul class="mb-0 mt-1">
-                    <?php foreach ($errors as $error): ?>
-                        <li><?php echo htmlspecialchars($error); ?></li>
-                    <?php endforeach; ?>
-                </ul>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        <?php endif; ?>
+<?php include 'nav.php'; ?>
 
-        <?php if (!empty($success)): ?>
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                <?php echo htmlspecialchars($success); ?>
-                <a href="admin_dashboard.php" class="alert-link ms-2">Back to Dashboard</a>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        <?php endif; ?>
+<div class="content-wrapper">
+<div class="container" style="max-width:720px;">
 
+    <!-- Page Header -->
+    <div class="page-header">
+        <h2><i class="bi bi-file-earmark-plus me-2" style="color:var(--primary)"></i>New Certificate</h2>
+        <a href="admin_dashboard.php" class="btn btn-outline-secondary"><i class="bi bi-arrow-left me-1"></i>Back</a>
+    </div>
+
+    <?php if (!empty($errors)): ?>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <i class="bi bi-exclamation-triangle me-2"></i><strong>Please fix the following:</strong>
+            <ul class="mb-0 mt-1">
+                <?php foreach ($errors as $error): ?>
+                    <li><?php echo htmlspecialchars($error); ?></li>
+                <?php endforeach; ?>
+            </ul>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    <?php endif; ?>
+
+    <?php if (!empty($success)): ?>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <i class="bi bi-check-circle me-2"></i><?php echo htmlspecialchars($success); ?>
+            <a href="admin_dashboard.php" class="alert-link ms-2">Back to Dashboard</a>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    <?php endif; ?>
+
+    <div class="card-chato">
         <form action="add_certificate.php" method="post" name="add-form">
-            <table class="table">
-                <tbody>
-                    <tr>
-                        <td>Customer Name:</td>
-                        <td><input type="text" name="customer" class="form-control" required></td>
-                    </tr>
-                    <tr>
-                        <td>Registration Number:</td>
-                        <td><input type="text" name="registration_number" class="form-control" required></td>
-                    </tr>
-                    <tr>
-                        <td>VIN Number:</td>
-                        <td><input type="text" name="vin_number" class="form-control" required></td>
-                    </tr>
-                    <tr>
-                        <td>Tank Description:</td>
-                        <td><textarea name="tank_description" class="form-control" required></textarea></td>
-                    </tr>
-                    <tr>
-                        <td>Trailer Compartments:</td>
-                        <td><input type="number" name="trailer_compartments" class="form-control" required></td>
-                    </tr>
-                    <tr>
-                        <td>Job Number:</td>
-                        <td><input type="number" name="job_number" class="form-control" required></td>
-                    </tr>
-                    <tr>
-                        <td>Issue Date:</td>
-                        <td><input type="date" name="issue_date" class="form-control" required></td>
-                    </tr>
-                    <tr>
-                        <td>Expiry Date:</td>
-                        <td><input type="date" name="expiry_date" class="form-control" required></td>
-                    </tr>
-                </tbody>
-            </table>
-            <div class="d-flex justify-content-end gap-2 mb-4">
-                <a class="btn btn-secondary" href="admin_dashboard.php">Cancel</a>
-                <button class="btn btn-primary" type="submit" name="Submit">Add Certificate</button>
+            <div class="row g-3">
+                <div class="col-12">
+                    <label class="form-label">Customer Name</label>
+                    <input type="text" name="customer" class="form-control" placeholder="Enter customer name" required>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Registration Number</label>
+                    <input type="text" name="registration_number" class="form-control" placeholder="e.g. ABC 123 GP" required>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">VIN Number</label>
+                    <input type="text" name="vin_number" class="form-control" placeholder="Vehicle VIN" required>
+                </div>
+                <div class="col-12">
+                    <label class="form-label">Tank Description</label>
+                    <textarea name="tank_description" class="form-control" rows="3" placeholder="Describe the tank" required></textarea>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">Trailer Compartments</label>
+                    <input type="number" name="trailer_compartments" class="form-control" placeholder="0" required>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">Job Number</label>
+                    <input type="number" name="job_number" class="form-control" placeholder="0" required>
+                </div>
+                <div class="col-md-4">
+                    <!-- spacer for alignment -->
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Issue Date</label>
+                    <input type="date" name="issue_date" class="form-control" required>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Expiry Date</label>
+                    <input type="date" name="expiry_date" class="form-control" required>
+                </div>
+            </div>
+            <hr style="margin:24px 0 16px; border-color:#eee;">
+            <div class="d-flex justify-content-end gap-2">
+                <a class="btn btn-outline-secondary" href="admin_dashboard.php">Cancel</a>
+                <button class="btn btn-primary" type="submit" name="Submit"><i class="bi bi-check-lg me-1"></i>Add Certificate</button>
             </div>
         </form>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</div>
+</div>
+
+<?php include 'footer.php'; ?>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

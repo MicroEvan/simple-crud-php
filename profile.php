@@ -24,23 +24,46 @@ $user = $result->fetch_assoc();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <title>User Profile</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+    <title>Profile - Chato Certificates</title>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary container">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="index.php">Back</a>
-        </div>
-    </nav>
-<div class="container">
-    <h2 class="mt-5">Profile</h2>
-    <div class="card mt-3">
-        <div class="card-body">
-            <p><strong>Name:</strong> <?php echo htmlspecialchars($user['name']); ?></p>
-            <p><strong>Email:</strong> <?php echo htmlspecialchars($user['email']); ?></p>
-            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#updateModal">Update Profile</button>
-        </div>
+
+<?php include 'nav.php'; ?>
+
+<div class="content-wrapper">
+<div class="container" style="max-width:600px;">
+
+    <!-- Page Header -->
+    <div class="page-header">
+        <h2><i class="bi bi-person-circle me-2" style="color:var(--primary)"></i>My Profile</h2>
     </div>
+
+    <!-- Profile Card -->
+    <div class="card-chato text-center">
+        <div style="width:80px;height:80px;background:linear-gradient(135deg,#4da3ff,#0d6efd);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;">
+            <i class="bi bi-person-fill" style="font-size:36px;color:#fff;"></i>
+        </div>
+        <h4 style="font-weight:600;color:#333;margin-bottom:4px;"><?php echo htmlspecialchars($user['name']); ?></h4>
+        <p style="color:#777;font-size:14px;margin-bottom:24px;"><?php echo htmlspecialchars($user['email']); ?></p>
+
+        <div class="text-start" style="background:#f8f9fa;border-radius:12px;padding:20px;margin-bottom:20px;">
+            <div class="d-flex justify-content-between mb-2">
+                <span style="color:#777;font-size:14px;">Name</span>
+                <span style="font-weight:500;font-size:14px;"><?php echo htmlspecialchars($user['name']); ?></span>
+            </div>
+            <hr style="margin:8px 0;border-color:#eee;">
+            <div class="d-flex justify-content-between">
+                <span style="color:#777;font-size:14px;">Email</span>
+                <span style="font-weight:500;font-size:14px;"><?php echo htmlspecialchars($user['email']); ?></span>
+            </div>
+        </div>
+
+        <button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#updateModal"><i class="bi bi-pencil-square me-1"></i>Update Profile</button>
+    </div>
+
+</div>
 </div>
 
 <!-- Update Modal -->
@@ -49,7 +72,7 @@ $user = $result->fetch_assoc();
     <div class="modal-content">
       <form method="POST" action="update_profile.php">
         <div class="modal-header">
-          <h5 class="modal-title" id="updateModalLabel">Update Profile</h5>
+          <h5 class="modal-title" id="updateModalLabel"><i class="bi bi-pencil-square me-2" style="color:var(--primary)"></i>Update Profile</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -62,19 +85,20 @@ $user = $result->fetch_assoc();
             <input type="email" class="form-control" id="email" name="email" value="<?php echo htmlspecialchars($user['email']); ?>" required>
           </div>
           <div class="mb-3">
-            <label for="password" class="form-label">New Password (leave blank to keep current password)</label>
+            <label for="password" class="form-label">New Password <span style="color:#999;font-weight:400;">(leave blank to keep current)</span></label>
             <input type="password" class="form-control" id="password" name="password">
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-primary">Save Changes</button>
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary"><i class="bi bi-check-lg me-1"></i>Save Changes</button>
         </div>
       </form>
     </div>
   </div>
 </div>
 
+<?php include 'footer.php'; ?>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

@@ -32,6 +32,7 @@ $row = mysqli_fetch_assoc($result);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
     <title>View Certificate</title>
     <style>
         body {
@@ -44,7 +45,7 @@ $row = mysqli_fetch_assoc($result);
             width: 210mm; /* A4 width */
             height: 297mm; /* A4 height */
             margin: auto;
-            padding: 15px;
+            padding: 15px 15mm;
             position: relative;
             background-image: url(cert1.png);
             background-size: 100% 100%;
@@ -55,38 +56,41 @@ $row = mysqli_fetch_assoc($result);
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
         .customer-name {
-            /*text-align: center;*/
-            font-size: 25px;
+            text-align: center;
+            font-size: 22px;
             color: #002B63;
-            margin-bottom: 20px;
+            margin-bottom: 5mm;
+            font-style: italic;
         }
         .certificate-test {
             text-align: left;
-            font-size: 15px;
-            color: #002B63;
+            font-size: 17px;
+            color: #006644;
+            font-weight: bold;
         }
 
         table {
-            width: 80%; /* Make tables occupy 80% of the container width */
-            margin-bottom: 20px; /* Space between tables */
+            width: 85%;
+            margin-bottom: 4mm;
             border-collapse: collapse;
-            border-radius: 5px; /* Rounded corners */
-            overflow: hidden; /* Prevents overflow from rounded corners */
-            /*box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);*/
+            border-radius: 5px;
+            overflow: hidden;
         }
         th, td {
-            padding: 10px;
+            padding: 3px 10px;
             text-align: left;
+            font-size: 16px;
         }
         .results {
             border: 1px solid black; /* Light border for tables */
             background: rgba(255, 255, 255, 0.8); /* Semi-transparent background for better visibility */
         }
         .results th, .results td {
-    border: 1px solid black; /* Border for table cells */
-    padding: 8px; /* Add some padding */
-    text-align: center; /* Center text for better presentation */
-    background: white; /* Optional: solid background for cells */
+    border: 1px solid black;
+    padding: 4px 6px;
+    text-align: center;
+    font-size: 16px;
+    background: white;
 }
         .cert-name {
             display: flex;
@@ -95,17 +99,23 @@ $row = mysqli_fetch_assoc($result);
         }
         .certification p{
             font-size: 16px;
-            color: #777;
-            margin-bottom: 20px;
-            padding: 0 20px; /* Adjust the left and right padding as needed */
-            text-align: center; /* Justifies the text */
+            color: #999;
+            margin-bottom: 5mm;
+            padding: 0 10mm;
+            text-align: center;
+            font-style: italic;
         }
         .certification-terms {
             display: flex;
-            justify-content: center; /* Center horizontally */
-            text-align: justify; /* Align text in the center */
-            padding: 0 20px; /* Adjust the left and right padding as needed */
-            
+            justify-content: center;
+            text-align: center;
+            padding: 0 20px;
+        }
+        .certification-terms p {
+            font-size: 15px;
+            color: #777;
+            margin-bottom: 3mm;
+            line-height: 1.5;
         }
         .certificate-footer {
             margin-top: 20px;
@@ -198,20 +208,13 @@ $row = mysqli_fetch_assoc($result);
 <div class="certificate-wrapper">
 <div class="certificate-container">
 
-    <span style="color:red; padding: 10px; position:absolute; right: 35px; top: 10px; font-weight: bold;">Cert No. <?php echo $row['certificate_id']; ?></span>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
+    <span style="color:red; padding: 10px; position:absolute; right: 35px; top: 10px; font-weight: bold; font-size: 16px;">Cert No. <?php echo $row['certificate_id']; ?></span>
+    <div style="height: 52mm;"></div>
 
 
     <div class="cert-name">
         <article>
-            <h1 style="font-size: 30px; color: #002B63; font-weight: bold; margin-bottom: 20px;">PRESSURE TEST CERTIFICATE</h1>
+            <h1 style="font-size: 26px; color: #006644; font-weight: bold; margin-bottom: 4mm; letter-spacing: 1px;">PRESSURE TEST CERTIFICATE</h1>
             <div class="certification">
             <p >This certificate has been issued to confirm that the vehicle's tank has passed all the required tests and meets the specified criteria.</p>
             </div>
@@ -220,7 +223,7 @@ $row = mysqli_fetch_assoc($result);
 
     <span class="customer-name"><?php echo $row['customer']; ?></span>
     <!-- Customer details table -->
-    <table style="border-collapse: collapse;  line-height: 0; border-spacing: 0;"><br>
+    <table style="border-collapse: collapse; line-height: 1.2; border-spacing: 0;">
         <tbody>
             <tr>
                 <td>Registration Number</td>
@@ -264,7 +267,7 @@ $row = mysqli_fetch_assoc($result);
     </table>
 
     <!-- Test details table -->
-    <table style="border-collapse: collapse;  line-height: 0; border-spacing: 0;">
+    <table style="border-collapse: collapse; line-height: 1.2; border-spacing: 0;">
         <thead>
             <tr>
                 <th colspan="3" class="certificate-test">The following were tested</th>
@@ -348,10 +351,10 @@ $row = mysqli_fetch_assoc($result);
 
 <!-- Buttons below the certificate -->
 <div class="certificate-actions">
-    <a href="admin_dashboard.php" class="btn btn-outline-secondary">Back to Dashboard</a>
-    <a href="edit_certificate.php?id=<?php echo $row['certificate_id']; ?>" class="btn btn-secondary">Edit Certificate</a>
-    <a href="generate_pdf.php?id=<?php echo $row['certificate_id']; ?>" class="btn btn-success">Download PDF</a>
-    <button id="printpagebutton" type="button" onclick="window.print();" class="btn btn-primary">Print Certificate</button>
+    <a href="admin_dashboard.php" class="btn btn-outline-secondary" style="border-radius:12px;"><i class="bi bi-arrow-left me-1"></i>Back</a>
+    <a href="edit_certificate.php?id=<?php echo $row['certificate_id']; ?>" class="btn btn-outline-warning" style="border-radius:12px;"><i class="bi bi-pencil-square me-1"></i>Edit</a>
+    <a href="generate_pdf.php?id=<?php echo $row['certificate_id']; ?>" class="btn btn-success" style="border-radius:12px;"><i class="bi bi-file-earmark-pdf me-1"></i>Download PDF</a>
+    <button id="printpagebutton" type="button" onclick="window.print();" class="btn btn-primary" style="border-radius:12px;"><i class="bi bi-printer me-1"></i>Print</button>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

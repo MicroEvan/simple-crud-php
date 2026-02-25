@@ -1,7 +1,9 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
-  <div class="container-fluid">
+<nav class="navbar navbar-expand-lg navbar-chato">
+  <div class="container">
     <!-- Brand -->
-    <a class="navbar-brand" href="<?php echo ($_SESSION['user_role'] === 'admin') ? 'admin_dashboard.php' : 'user_dashboard.php'; ?>">Home</a>
+    <a class="navbar-brand d-flex align-items-center gap-2" href="<?php echo ($_SESSION['user_role'] === 'admin') ? 'admin_dashboard.php' : 'user_dashboard.php'; ?>">
+      <i class="bi bi-shield-check" style="font-size:22px"></i> Chato Certificates
+    </a>
     
     <!-- Toggler for small screens -->
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -10,22 +12,25 @@
     
     <!-- Navbar Links -->
     <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">  <!-- Added ms-auto here -->
-            <!-- Users Link with Dropdown, Visible Only to Admin -->
+        <ul class="navbar-nav ms-auto gap-1">
             <?php if ($_SESSION['user_role'] === 'admin'): ?>
             <li class="nav-item">
-                <a class="nav-link" href="admin_user_management.php">Manage Users</a>
+                <a class="nav-link" href="admin_dashboard.php"><i class="bi bi-speedometer2 me-1"></i>Dashboard</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="admin_user_management.php"><i class="bi bi-people me-1"></i>Users</a>
             </li>
             <?php endif; ?>
 
             <!-- Profile Link -->
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Profile
+                    <i class="bi bi-person-circle me-1"></i><?php echo htmlspecialchars($_SESSION['user_email'] ?? 'Profile'); ?>
                 </a>
-                <ul class="dropdown-menu" aria-labelledby="profileDropdown">
-                    <li><a class="dropdown-item" href="profile.php">View Profile</a></li>
-                    <li><a class="dropdown-item" href="logout.php">Log out</a></li>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
+                    <li><a class="dropdown-item" href="profile.php"><i class="bi bi-person me-2"></i>View Profile</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item text-danger" href="logout.php"><i class="bi bi-box-arrow-right me-2"></i>Log out</a></li>
                 </ul>
             </li>
         </ul>

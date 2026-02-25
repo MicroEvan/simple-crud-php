@@ -19,21 +19,36 @@ if (isset($_SESSION['user_id'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <title>Welcome to the Certificate Management System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+    <title>Chato Certificates</title>
+    <style>
+        body { background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 50%, #084298 100%); display: flex; align-items: center; justify-content: center; min-height: 100vh; }
+    </style>
 </head>
 <body>
-<div class="container text-center">
-    <h1 class="mt-5">Welcome to the Certificate Management System</h1>
-    <p class="lead">Manage your certificates and user accounts efficiently.</p>
-    
-    <div class="mt-4">
-        <a href="login.php" class="btn btn-primary btn-lg">Login</a>
-        <a href="register.php" class="btn btn-secondary btn-lg">Register</a>
+
+<div class="text-center" style="max-width:480px; width:100%; padding:20px;">
+    <div style="background:#fff; border-radius:16px; box-shadow:0 8px 40px rgba(0,0,0,0.2); padding:48px 36px;">
+        <div style="width:80px;height:80px;background:linear-gradient(135deg,#4da3ff,#0d6efd);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;">
+            <i class="bi bi-shield-check" style="font-size:36px;color:#fff;"></i>
+        </div>
+        <h1 style="font-size:24px;font-weight:700;color:#333;margin-bottom:8px;">Chato Certificates</h1>
+        <p style="color:#777;font-size:14px;margin-bottom:32px;">Manage your pressure test certificates efficiently and securely.</p>
+
+        <div class="d-grid gap-3">
+            <a href="login.php" class="btn btn-dark-login" style="border-radius:24px; padding:12px; font-size:16px; font-weight:600; background:#222; color:#fff;">
+                <i class="bi bi-box-arrow-in-right me-2"></i>Login
+            </a>
+            <a href="register.php" class="btn" style="border-radius:24px; padding:12px; font-size:16px; font-weight:600; background:var(--primary); color:#fff; border:none;">
+                <i class="bi bi-person-plus me-2"></i>Register
+            </a>
+        </div>
     </div>
 
-    <footer class="mt-5">
-        <p>&copy; <?php echo date("Y"); ?> Chato Electrical & Tankers Equipment Ltd</p>
-    </footer>
+    <p style="color:rgba(255,255,255,0.7); font-size:12px; margin-top:20px;">
+        &copy; 2014 – <?php echo date("Y"); ?> Chato Electrical &amp; Tankers Equipment Ltd.
+    </p>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

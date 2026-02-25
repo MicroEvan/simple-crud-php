@@ -120,7 +120,7 @@ $html = <<<HTML
     .content {
         position: relative;
         z-index: 2;
-        padding: 0 25mm;
+        padding: 0 15mm;
     }
     /* Spacer for the logo area at top of background */
     .logo-spacer {
@@ -222,7 +222,7 @@ $html = <<<HTML
         font-size: 15px;
         color: #777;
         line-height: 1.5;
-        text-align: justify;
+        text-align: center;
     }
     .terms p {
         margin: 0 0 3mm 0;
