@@ -9,63 +9,48 @@ if (!isset($_SESSION['user_id']) || $_SESSION['user_role'] !== 'admin') {
 
 require_once 'conn.php';
 
-define('FIELD_REQUIRED_MESSAGE', '<font color="red">Field is required.</font><br>');
-define('DATA_ADDED_MESSAGE', '<font color="green">Data Added Successfully.</font><br>');
+$errors = [];
+$success = '';
 
 if (isset($_POST['Submit'])) {
-    // Escape the input
-    $customer = mysqli_real_escape_string($conn, $_POST['customer']);
-    $registration_number = mysqli_real_escape_string($conn, $_POST['registration_number']);
-    $vin_number = mysqli_real_escape_string($conn, $_POST['vin_number']);
-    $tank_description = mysqli_real_escape_string($conn, $_POST['tank_description']);
-    $trailer_compartments = mysqli_real_escape_string($conn, $_POST['trailer_compartments']);
-    $job_number = mysqli_real_escape_string($conn, $_POST['job_number']);
-    $issue_date = mysqli_real_escape_string($conn, $_POST['issue_date']);
-    $expiry_date = mysqli_real_escape_string($conn, $_POST['expiry_date']);
+    // Collect and sanitize input
+    $customer = trim($_POST['customer'] ?? '');
+    $registration_number = trim($_POST['registration_number'] ?? '');
+    $vin_number = trim($_POST['vin_number'] ?? '');
+    $tank_description = trim($_POST['tank_description'] ?? '');
+    $trailer_compartments = trim($_POST['trailer_compartments'] ?? '');
+    $job_number = trim($_POST['job_number'] ?? '');
+    $issue_date = trim($_POST['issue_date'] ?? '');
+    $expiry_date = trim($_POST['expiry_date'] ?? '');
 
-    // Check if the required fields are empty
-    if (empty($customer) || empty($registration_number) || empty($vin_number) || empty($tank_description) || empty($trailer_compartments) || empty($job_number) || empty($issue_date) || empty($expiry_date)) {
-        if (empty($customer)) {
-            echo FIELD_REQUIRED_MESSAGE . "Customer Name is required.<br>";
-        }
-        if (empty($registration_number)) {
-            echo FIELD_REQUIRED_MESSAGE . "Registration Number is required.<br>";
-        }
-        if (empty($vin_number)) {
-            echo FIELD_REQUIRED_MESSAGE . "VIN Number is required.<br>";
-        }
-        if (empty($tank_description)) {
-            echo FIELD_REQUIRED_MESSAGE . "Tank Description is required.<br>";
-        }
-        if (empty($trailer_compartments)) {
-            echo FIELD_REQUIRED_MESSAGE . "Trailer Compartments is required.<br>";
-        }
-        if (empty($job_number)) {
-            echo FIELD_REQUIRED_MESSAGE . "Job Number is required.<br>";
-        }
-        if (empty($issue_date)) {
-            echo FIELD_REQUIRED_MESSAGE . "Issue Date is required.<br>";
-        }
-        if (empty($expiry_date)) {
-            echo FIELD_REQUIRED_MESSAGE . "Expiry Date is required.<br>";
-        }
+    // Validate required fields
+    if (empty($customer)) $errors[] = "Customer Name is required.";
+    if (empty($registration_number)) $errors[] = "Registration Number is required.";
+    if (empty($vin_number)) $errors[] = "VIN Number is required.";
+    if (empty($tank_description)) $errors[] = "Tank Description is required.";
+    if (empty($trailer_compartments)) $errors[] = "Trailer Compartments is required.";
+    if (empty($job_number)) $errors[] = "Job Number is required.";
+    if (empty($issue_date)) $errors[] = "Issue Date is required.";
+    if (empty($expiry_date)) $errors[] = "Expiry Date is required.";
 
-        echo '<br><a href="javascript:self.history.back();">Back</a>';
-    } else {
-        // Prepare the SQL statement for insertion
-        $stmt = $conn->prepare("INSERT INTO `certificate` (customer, registration_number, vin_number, tank_description, trailer_compartments, job_number, issue_date, expiry_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+    if (empty($errors)) {
+        try {
+            $user_id = $_SESSION['user_id'];
+            $stmt = $conn->prepare("INSERT INTO `certificate` (customer, registration_number, vin_number, tank_description, trailer_compartments, job_number, issue_date, expiry_date, user_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            $stmt->bind_param("sssssissi", $customer, $registration_number, $vin_number, $tank_description, $trailer_compartments, $job_number, $issue_date, $expiry_date, $user_id);
 
-        // Bind parameters to the prepared statement
-        $stmt->bind_param("sssssiss", $customer, $registration_number, $vin_number, $tank_description, $trailer_compartments, $job_number, $issue_date, $expiry_date); // 's' for string, 'i' for integer
-
-        // Execute the prepared statement
-        if ($stmt->execute()) {
-            echo DATA_ADDED_MESSAGE;
-            // Close the statement
-            $stmt->close();
-            echo '<br><a href="index.php">View Certificates</a>';
-        } else {
-            echo "Error adding record: " . $stmt->error;
+            if ($stmt->execute()) {
+                $success = "Certificate added successfully.";
+                $stmt->close();
+            } else {
+                $errors[] = "Could not add the certificate. Please try again.";
+            }
+        } catch (mysqli_sql_exception $e) {
+            error_log("SQL Error in add_certificate.php: " . $e->getMessage());
+            $errors[] = "Something went wrong while saving the certificate. Please contact the administrator.";
+        } catch (Exception $e) {
+            error_log("Error in add_certificate.php: " . $e->getMessage());
+            $errors[] = "An unexpected error occurred. Please try again later.";
         }
     }
 }
@@ -81,6 +66,27 @@ if (isset($_POST['Submit'])) {
 <body>
     <div class="container mt-5">
         <h2>Pressure Test Certificate</h2>
+
+        <?php if (!empty($errors)): ?>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>Please fix the following:</strong>
+                <ul class="mb-0 mt-1">
+                    <?php foreach ($errors as $error): ?>
+                        <li><?php echo htmlspecialchars($error); ?></li>
+                    <?php endforeach; ?>
+                </ul>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        <?php endif; ?>
+
+        <?php if (!empty($success)): ?>
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <?php echo htmlspecialchars($success); ?>
+                <a href="admin_dashboard.php" class="alert-link ms-2">Back to Dashboard</a>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        <?php endif; ?>
+
         <form action="add_certificate.php" method="post" name="add-form">
             <table class="table">
                 <tbody>
@@ -116,16 +122,12 @@ if (isset($_POST['Submit'])) {
                         <td>Expiry Date:</td>
                         <td><input type="date" name="expiry_date" class="form-control" required></td>
                     </tr>
-                    <tr>
-                        <td>
-                            <div>
-                                <button class="btn btn-primary" type="submit" name="Submit">Add Certificate</button>
-                                <a class="btn btn-secondary" href="admin_dashboard.php">Cancel</a>
-                            </div>
-                        </td>
-                    </tr>
                 </tbody>
             </table>
+            <div class="d-flex justify-content-end gap-2 mb-4">
+                <a class="btn btn-secondary" href="admin_dashboard.php">Cancel</a>
+                <button class="btn btn-primary" type="submit" name="Submit">Add Certificate</button>
+            </div>
         </form>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

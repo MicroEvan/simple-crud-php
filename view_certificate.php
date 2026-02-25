@@ -41,12 +41,13 @@ $row = mysqli_fetch_assoc($result);
             padding: 0;
         }
         .certificate-container {
-            width: 220mm; /* A4 width */
-            height: 300mm; /* A4 height */
+            width: 210mm; /* A4 width */
+            height: 297mm; /* A4 height */
             margin: auto;
-            padding: 20px;
+            padding: 15px;
+            position: relative;
             background-image: url(cert1.png);
-            background-size: cover; /* Ensures the image covers the area */
+            background-size: 100% 100%;
             display: flex;
             flex-direction: column;
             align-items: center; /* Center tables horizontally */
@@ -129,17 +130,56 @@ $row = mysqli_fetch_assoc($result);
         .print-button input:hover {
             background-color: #45a049;
         }
+        /* Responsive wrapper to scale certificate on small screens */
+        .certificate-wrapper {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            padding: 10px 0;
+        }
+        .certificate-actions {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            padding: 20px 0;
+            flex-wrap: wrap;
+        }
+        @media screen and (max-width: 800px) {
+            .certificate-container {
+                transform: scale(0.6);
+                transform-origin: top center;
+                margin-bottom: -120mm;
+            }
+        }
+        @media screen and (min-width: 801px) and (max-width: 1024px) {
+            .certificate-container {
+                transform: scale(0.8);
+                transform-origin: top center;
+                margin-bottom: -60mm;
+            }
+        }
         @media print {
+            @page {
+                size: A4 portrait;
+                margin: 0;
+            }
             body {
                 margin: 0;
                 padding: 0;
             }
+            .certificate-wrapper {
+                overflow: visible;
+            }
             .certificate-container {
-                box-shadow: none; /* Remove shadow when printing */
-                border-radius: 0; /* Remove border radius for printing */
+                width: 210mm;
+                height: 297mm;
+                box-shadow: none;
+                border-radius: 0;
+                transform: none !important;
+                margin: 0 !important;
             }
             nav,
             .print-button,
+            .certificate-actions,
             .certificate-footer {
                 display: none;
             }
@@ -155,9 +195,10 @@ $row = mysqli_fetch_assoc($result);
 </div>
 </nav>
 
+<div class="certificate-wrapper">
 <div class="certificate-container">
 
-    <span class="flex" style="color:red; padding: 10px; position:absolute; ">Cert No. <?php echo $row['certificate_id']; ?></span>
+    <span style="color:red; padding: 10px; position:absolute; right: 35px; top: 10px; font-weight: bold;">Cert No. <?php echo $row['certificate_id']; ?></span>
     <br>
     <br>
     <br>
@@ -303,11 +344,14 @@ $row = mysqli_fetch_assoc($result);
 </div>
 
 </div>
+</div>
 
-<!-- Buttons below the table -->
-<div class="certificate-footer">
-    <input id="printpagebutton" type="button" value="Print Certificate" onclick="window.print();" class="btn btn-primary"/>
-    <a href="edit_certificate.php?id=<?php echo $row['certificate_id']; ?>" class="btn btn-secondary">Edit</a>
+<!-- Buttons below the certificate -->
+<div class="certificate-actions">
+    <a href="admin_dashboard.php" class="btn btn-outline-secondary">Back to Dashboard</a>
+    <a href="edit_certificate.php?id=<?php echo $row['certificate_id']; ?>" class="btn btn-secondary">Edit Certificate</a>
+    <a href="generate_pdf.php?id=<?php echo $row['certificate_id']; ?>" class="btn btn-success">Download PDF</a>
+    <button id="printpagebutton" type="button" onclick="window.print();" class="btn btn-primary">Print Certificate</button>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

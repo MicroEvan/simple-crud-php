@@ -53,6 +53,7 @@ CREATE TABLE `certificate` (
   `tank_description` text NOT NULL,
   `trailer_compartments` int(11) NOT NULL,
   `job_number` int(11) NOT NULL,
+  `issue_date` date NOT NULL,
   `expiry_date` date NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP, -- New timestamp column
   `user_id` int(11) NOT NULL, -- New user ID column

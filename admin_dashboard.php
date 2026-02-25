@@ -54,15 +54,24 @@ $result = mysqli_query($conn, "
     <h2 class="mt-5">Dashboard</h2>
     <p>Welcome, <?php echo $_SESSION['user_email']; ?>! You have admin access.</p>
 
-    <div class="d-flex justify-content-between align-items-center mb-3">
+    <?php if (!empty($_SESSION['success'])): ?>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <?php echo htmlspecialchars($_SESSION['success']); ?>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        <?php unset($_SESSION['success']); ?>
+    <?php endif; ?>
+
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center gap-2 mb-3">
         <a href="add_certificate.php" class="btn btn-primary">New</a>
 
-        <form method="GET" class="d-flex" style="width: 400px;">
-            <input type="text" name="search" class="form-control" placeholder="Search by Customer, Registration Number, or VIN Number" value="<?php echo htmlspecialchars($search); ?>">
+        <form method="GET" class="d-flex w-100 w-md-auto" style="max-width: 400px;">
+            <input type="text" name="search" class="form-control" placeholder="Search by Customer, Reg No, or VIN" value="<?php echo htmlspecialchars($search); ?>">
             <button class="btn btn-outline-secondary ms-2" type="submit">Search</button>
         </form>
     </div>
 
+    <div class="table-responsive">
     <table class="table">
         <thead>
             <tr>
@@ -106,6 +115,7 @@ $result = mysqli_query($conn, "
         ?>
         </tbody>
     </table>
+    </div>
 
     <!-- Pagination Links -->
     <nav aria-label="Page navigation">
@@ -125,9 +135,9 @@ $result = mysqli_query($conn, "
     </nav>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-</body>
 <footer>
     <?php include 'footer.php'; ?>
 </footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
 </html>

@@ -79,6 +79,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
     <title>User Management</title>
 </head>
 <body>
@@ -97,6 +98,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <button class="btn btn-primary mt-3" data-bs-toggle="modal" data-bs-target="#addUserModal">Add User</button>
 
     <h3 class="mt-5">Existing Users</h3>
+    <div class="table-responsive">
     <table class="table table-bordered mt-3">
         <thead>
             <tr>
@@ -115,19 +117,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <td><?php echo $user['email']; ?></td>
                     <td><?php echo $user['role']; ?></td>
                     <td>
-                        <!-- Edit User Button -->
-                        <button class="btn btn-warning btn-sm" onclick="editUser(<?php echo $user['id']; ?>, '<?php echo $user['name']; ?>', '<?php echo $user['email']; ?>', '<?php echo $user['role']; ?>')">Edit</button>
+                        <div class="d-flex flex-wrap gap-1">
+                            <!-- Edit User Button -->
+                            <button class="btn btn-warning btn-sm" title="Edit" onclick="editUser(<?php echo $user['id']; ?>, '<?php echo $user['name']; ?>', '<?php echo $user['email']; ?>', '<?php echo $user['role']; ?>')"><i class="bi bi-pencil-square"></i></button>
 
-                        <!-- Delete User Button -->
-                        <form method="POST" action="" style="display:inline;">
-                            <input type="hidden" name="id" value="<?php echo $user['id']; ?>">
-                            <button type="submit" name="delete_user" class="btn btn-danger btn-sm">Delete</button>
-                        </form>
+                            <!-- Delete User Button -->
+                            <form method="POST" action="" style="display:inline;">
+                                <input type="hidden" name="id" value="<?php echo $user['id']; ?>">
+                                <button type="submit" name="delete_user" class="btn btn-danger btn-sm" title="Delete"><i class="bi bi-trash"></i></button>
+                            </form>
+                        </div>
                     </td>
                 </tr>
             <?php endforeach; ?>
         </tbody>
     </table>
+    </div>
     <div class="container">
     <?php
         include 'approve_users.php'
@@ -210,6 +215,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
 </div>
 
+<?php include 'footer.php'; ?>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
     function editUser(id, name, email, role) {
@@ -222,9 +228,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         editUserModal.show();
     }
 </script>
-<?php
-        include 'footer.php'
-    ?>
-    </div>
 </body>
 </html>

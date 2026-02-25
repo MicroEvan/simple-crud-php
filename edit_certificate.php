@@ -37,8 +37,22 @@ while($row = mysqli_fetch_array($results)){
     <title>Edit Certificate</title>
 </head>
 <body>
-    <a href="index.php">Home</a>
+    <div class="container mt-5">
+    <a href="admin_dashboard.php">Home</a>
     <br><br>
+
+    <?php if (!empty($_SESSION['errors'])): ?>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>Please fix the following:</strong>
+            <ul class="mb-0 mt-1">
+                <?php foreach ($_SESSION['errors'] as $error): ?>
+                    <li><?php echo htmlspecialchars($error); ?></li>
+                <?php endforeach; ?>
+            </ul>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        <?php unset($_SESSION['errors']); ?>
+    <?php endif; ?>
 
     <form method="post" name="edit-form" action="certeditprocess.php">
         <table class="table">
@@ -83,6 +97,7 @@ while($row = mysqli_fetch_array($results)){
             </tr>
         </table>
     </form>
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>
