@@ -280,27 +280,27 @@ $row = mysqli_fetch_assoc($result);
             </tr>
             <tr>
                 <td>Barrel</td>
-                <td>35KPa <i class="fas fa-check-square" style="color: green;"></i> <!-- Checked icon --></td>
+                <td>35KPa <span style="display:inline-block;background:#198754;color:#fff;font-size:9px;font-weight:700;padding:1px 5px;border-radius:3px;vertical-align:middle;">PASS</span></td>
                 
             </tr>
             <tr>
                 <td>Compartments</td>
-                <td>35KPa <i class="fas fa-check-square" style="color: green;"></i> <!-- Checked icon --></td>
+                <td>35KPa <span style="display:inline-block;background:#198754;color:#fff;font-size:9px;font-weight:700;padding:1px 5px;border-radius:3px;vertical-align:middle;">PASS</span></td>
                 
             </tr>
             <tr>
                 <td>Bottom Pipe</td>
-                <td>20KPa <i class="fas fa-check-square" style="color: green;"></i> <!-- Checked icon --></td>
+                <td>20KPa <span style="display:inline-block;background:#198754;color:#fff;font-size:9px;font-weight:700;padding:1px 5px;border-radius:3px;vertical-align:middle;">PASS</span></td>
                 
             </tr>
             <tr>
                 <td>Offloading Pipe</td>
-                <td>800KPa <i class="fas fa-check-square" style="color: green;"></i> <!-- Checked icon --></td>
+                <td>800KPa <span style="display:inline-block;background:#198754;color:#fff;font-size:9px;font-weight:700;padding:1px 5px;border-radius:3px;vertical-align:middle;">PASS</span></td>
                 
             </tr>
             <tr>
                 <td>Valance</td>
-                <td>35KPa <i class="fas fa-check-square" style="color: green;"></i> <!-- Checked icon --></td>
+                <td>35KPa <span style="display:inline-block;background:#198754;color:#fff;font-size:9px;font-weight:700;padding:1px 5px;border-radius:3px;vertical-align:middle;">PASS</span></td>
             </tr>
             <!-- Add more rows as needed -->
         </tbody>

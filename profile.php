@@ -42,7 +42,7 @@ $user = $result->fetch_assoc();
 
     <!-- Profile Card -->
     <div class="card-chato text-center">
-        <div style="width:80px;height:80px;background:linear-gradient(135deg,#4da3ff,#0d6efd);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;">
+        <div style="width:80px;height:80px;background:linear-gradient(135deg,#40bf80,#198754);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;">
             <i class="bi bi-person-fill" style="font-size:36px;color:#fff;"></i>
         </div>
         <h4 style="font-weight:600;color:#333;margin-bottom:4px;"><?php echo htmlspecialchars($user['name']); ?></h4>

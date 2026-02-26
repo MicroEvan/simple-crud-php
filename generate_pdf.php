@@ -195,8 +195,16 @@ $html = <<<HTML
         color: #333;
     }
     .check {
-        color: green;
-        font-size: 17px;
+        display: inline-block;
+        background: #198754;
+        color: #fff;
+        font-size: 9px;
+        font-weight: 700;
+        padding: 1px 5px;
+        border-radius: 3px;
+        letter-spacing: 0.5px;
+        vertical-align: middle;
+        margin-left: 2px;
     }
     /* Compartments results table */
     .results-table {
@@ -295,23 +303,23 @@ $html = <<<HTML
             </tr>
             <tr>
                 <td class="test-name">Barrel</td>
-                <td class="test-result">35KPa <span class="check">&#9745;</span></td>
+                <td class="test-result">35KPa <span class="check">PASS</span></td>
             </tr>
             <tr>
                 <td class="test-name">Compartments</td>
-                <td class="test-result">35KPa <span class="check">&#9745;</span></td>
+                <td class="test-result">35KPa <span class="check">PASS</span></td>
             </tr>
             <tr>
                 <td class="test-name">Bottom Pipe</td>
-                <td class="test-result">20KPa <span class="check">&#9745;</span></td>
+                <td class="test-result">20KPa <span class="check">PASS</span></td>
             </tr>
             <tr>
                 <td class="test-name">Offloading Pipe</td>
-                <td class="test-result">800KPa <span class="check">&#9745;</span></td>
+                <td class="test-result">800KPa <span class="check">PASS</span></td>
             </tr>
             <tr>
                 <td class="test-name">Valance</td>
-                <td class="test-result">35KPa <span class="check">&#9745;</span></td>
+                <td class="test-result">35KPa <span class="check">PASS</span></td>
             </tr>
         </table>
 

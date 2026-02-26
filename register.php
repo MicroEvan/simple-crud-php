@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <style>
         body {
             margin: 0; padding: 0; min-height: 100vh;
-            background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 50%, #084298 100%);
+            background: linear-gradient(135deg, #198754 0%, #157347 50%, #0f5132 100%);
             display: flex; align-items: center; justify-content: center;
             font-family: 'Segoe UI', Arial, sans-serif;
         }
@@ -53,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
         .register-icon {
             width: 72px; height: 72px;
-            background: linear-gradient(135deg, #4da3ff, #0d6efd);
+            background: linear-gradient(135deg, #40bf80, #198754);
             border-radius: 50%; display: flex; align-items: center; justify-content: center;
             margin: 0 auto 16px;
         }
@@ -62,7 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         .form-control {
             border-radius: 24px; padding: 10px 20px; font-size: 14px; border: 1px solid #ddd;
         }
-        .form-control:focus { border-color: #0d6efd; box-shadow: 0 0 0 3px rgba(13,110,253,0.15); }
+        .form-control:focus { border-color: #198754; box-shadow: 0 0 0 3px rgba(25,135,84,0.15); }
         .input-group { position: relative; }
         .input-group .toggle-password {
             position: absolute; right: 14px; top: 50%; transform: translateY(-50%);
@@ -72,8 +72,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             border-radius: 24px; padding: 10px; font-size: 16px; font-weight: 600; width: 100%;
             background: #222; color: #fff; border: none; transition: background 0.2s;
         }
-        .btn-register:hover { background: #0d6efd; color: #fff; }
-        .register-footer a { color: #0d6efd; text-decoration: none; font-size: 14px; }
+        .btn-register:hover { background: #198754; color: #fff; }
+        .register-footer a { color: #198754; text-decoration: none; font-size: 14px; }
         .register-footer a:hover { text-decoration: underline; }
         .alert { border-radius: 12px; font-size: 14px; text-align: left; }
     </style>

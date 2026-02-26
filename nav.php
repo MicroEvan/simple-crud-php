@@ -2,7 +2,7 @@
   <div class="container">
     <!-- Brand -->
     <a class="navbar-brand d-flex align-items-center gap-2" href="<?php echo ($_SESSION['user_role'] === 'admin') ? 'admin_dashboard.php' : 'user_dashboard.php'; ?>">
-      <i class="bi bi-shield-check" style="font-size:22px"></i> Chato Certificates
+      <img src="logo.ico" alt="Logo" style="height:28px;width:28px;"> Chato Certificates
     </a>
     
     <!-- Toggler for small screens -->

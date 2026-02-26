@@ -23,14 +23,14 @@ if (isset($_SESSION['user_id'])) {
     <link href="style.css" rel="stylesheet">
     <title>Chato Certificates</title>
     <style>
-        body { background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 50%, #084298 100%); display: flex; align-items: center; justify-content: center; min-height: 100vh; }
+        body { background: linear-gradient(135deg, #198754 0%, #157347 50%, #0f5132 100%); display: flex; align-items: center; justify-content: center; min-height: 100vh; }
     </style>
 </head>
 <body>
 
 <div class="text-center" style="max-width:480px; width:100%; padding:20px;">
     <div style="background:#fff; border-radius:16px; box-shadow:0 8px 40px rgba(0,0,0,0.2); padding:48px 36px;">
-        <div style="width:80px;height:80px;background:linear-gradient(135deg,#4da3ff,#0d6efd);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;">
+        <div style="width:80px;height:80px;background:linear-gradient(135deg,#40bf80,#198754);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;">
             <i class="bi bi-shield-check" style="font-size:36px;color:#fff;"></i>
         </div>
         <h1 style="font-size:24px;font-weight:700;color:#333;margin-bottom:8px;">Chato Certificates</h1>

@@ -62,7 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             margin: 0;
             padding: 0;
             min-height: 100vh;
-            background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 50%, #084298 100%);
+            background: linear-gradient(135deg, #198754 0%, #157347 50%, #0f5132 100%);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -80,7 +80,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         .login-icon {
             width: 72px;
             height: 72px;
-            background: linear-gradient(135deg, #4da3ff, #0d6efd);
+            background: linear-gradient(135deg, #40bf80, #198754);
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -104,8 +104,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             border: 1px solid #ddd;
         }
         .form-control:focus {
-            border-color: #0d6efd;
-            box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.15);
+            border-color: #198754;
+            box-shadow: 0 0 0 3px rgba(25, 135, 84, 0.15);
         }
         .input-group {
             position: relative;
@@ -134,11 +134,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             transition: background 0.2s;
         }
         .btn-login:hover {
-            background: #0d6efd;
+            background: #198754;
             color: #fff;
         }
         .login-footer a {
-            color: #0d6efd;
+            color: #198754;
             text-decoration: none;
             font-size: 14px;
         }
@@ -156,7 +156,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <div class="login-card">
     <div class="login-icon">
-        <i class="bi bi-shield-lock"></i>
+        <img src="logo.ico" alt="Logo" style="width:40px;height:40px;">
     </div>
     <div class="login-title">Login to your account</div>
 
