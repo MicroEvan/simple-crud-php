@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-chato">
   <div class="container">
     <!-- Brand -->
-    <a class="navbar-brand d-flex align-items-center gap-2" href="<?php echo ($_SESSION['user_role'] === 'admin') ? 'admin_dashboard.php' : 'user_dashboard.php'; ?>">
+    <a class="navbar-brand d-flex align-items-center gap-2" href="<?php echo ($_SESSION['user_role'] === 'admin') ? 'dashboard' : 'dashboard'; ?>">
       <img src="logo.ico" alt="Logo" style="height:28px;width:28px;"> Chato Certificates
     </a>
     
@@ -15,10 +15,10 @@
         <ul class="navbar-nav ms-auto gap-1">
             <?php if ($_SESSION['user_role'] === 'admin'): ?>
             <li class="nav-item">
-                <a class="nav-link" href="admin_dashboard.php"><i class="bi bi-speedometer2 me-1"></i>Dashboard</a>
+                <a class="nav-link" href="dashboard"><i class="bi bi-speedometer2 me-1"></i>Dashboard</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="admin_user_management.php"><i class="bi bi-people me-1"></i>Users</a>
+                <a class="nav-link" href="users"><i class="bi bi-people me-1"></i>Users</a>
             </li>
             <?php endif; ?>
 
@@ -28,9 +28,9 @@
                     <i class="bi bi-person-circle me-1"></i><?php echo htmlspecialchars($_SESSION['user_email'] ?? 'Profile'); ?>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
-                    <li><a class="dropdown-item" href="profile.php"><i class="bi bi-person me-2"></i>View Profile</a></li>
+                    <li><a class="dropdown-item" href="profile"><i class="bi bi-person me-2"></i>View Profile</a></li>
                     <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item text-danger" href="logout.php"><i class="bi bi-box-arrow-right me-2"></i>Log out</a></li>
+                    <li><a class="dropdown-item text-danger" href="logout"><i class="bi bi-box-arrow-right me-2"></i>Log out</a></li>
                 </ul>
             </li>
         </ul>

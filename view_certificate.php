@@ -3,7 +3,7 @@ session_start();
 
 // Check if user is logged in and is an admin
 if (!isset($_SESSION['user_id']) || $_SESSION['user_role'] !== 'admin') {
-    header("Location: login.php"); // Redirect to login if not logged in or not an admin
+    header("Location: login"); // Redirect to login if not logged in or not an admin
     exit();
 }
 
@@ -29,6 +29,7 @@ $row = mysqli_fetch_assoc($result);
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <base href="<?php echo rtrim(dirname($_SERVER['SCRIPT_NAME']), '/\\') . '/'; ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -352,9 +353,9 @@ $row = mysqli_fetch_assoc($result);
 
 <!-- Buttons below the certificate -->
 <div class="certificate-actions">
-    <a href="admin_dashboard.php" class="btn btn-outline-secondary" style="border-radius:12px;"><i class="bi bi-arrow-left me-1"></i>Back</a>
-    <a href="edit_certificate.php?id=<?php echo $row['certificate_id']; ?>" class="btn btn-outline-warning" style="border-radius:12px;"><i class="bi bi-pencil-square me-1"></i>Edit</a>
-    <a href="generate_pdf.php?id=<?php echo $row['certificate_id']; ?>" class="btn btn-success" style="border-radius:12px;"><i class="bi bi-file-earmark-pdf me-1"></i>Download PDF</a>
+    <a href="dashboard" class="btn btn-outline-secondary" style="border-radius:12px;"><i class="bi bi-arrow-left me-1"></i>Back</a>
+    <a href="certificates/edit?id=<?php echo $row['certificate_id']; ?>" class="btn btn-outline-warning" style="border-radius:12px;"><i class="bi bi-pencil-square me-1"></i>Edit</a>
+    <a href="certificates/pdf?id=<?php echo $row['certificate_id']; ?>" class="btn btn-success" style="border-radius:12px;"><i class="bi bi-file-earmark-pdf me-1"></i>Download PDF</a>
     <button id="printpagebutton" type="button" onclick="window.print();" class="btn btn-primary" style="border-radius:12px;"><i class="bi bi-printer me-1"></i>Print</button>
 </div>
 

@@ -3,7 +3,7 @@ session_start();
 
 // Check if user is logged in and is an admin
 if (!isset($_SESSION['user_id']) || $_SESSION['user_role'] !== 'admin') {
-    header("Location: login.php"); // Redirect to login if not logged in or not an admin
+    header("Location: login"); // Redirect to login if not logged in or not an admin
     exit();
 }
 
@@ -42,6 +42,7 @@ $result = mysqli_query($conn, "
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <base href="<?php echo rtrim(dirname($_SERVER['SCRIPT_NAME']), '/\\') . '/'; ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
@@ -70,7 +71,7 @@ $result = mysqli_query($conn, "
             <h2><i class="bi bi-speedometer2 me-2" style="color:var(--primary)"></i>Dashboard</h2>
             <p style="color:#777; font-size:14px; margin:4px 0 0;">Welcome back, <?php echo htmlspecialchars($_SESSION['user_email']); ?></p>
         </div>
-        <a href="add_certificate.php" class="btn btn-primary"><i class="bi bi-plus-lg me-1"></i>New Certificate</a>
+        <a href="certificates/add" class="btn btn-primary"><i class="bi bi-plus-lg me-1"></i>New Certificate</a>
     </div>
 
     <!-- Search Card -->
@@ -112,9 +113,9 @@ $result = mysqli_query($conn, "
                     <td><?php echo htmlspecialchars($row['job_number']); ?></td>
                     <td style="text-align:center;">
                         <div class="btn-group">
-                            <a href="view_certificate.php?id=<?php echo $row['certificate_id']; ?>" class="btn btn-sm btn-outline-primary" title="View"><i class="bi bi-eye"></i></a>
-                            <a href="edit_certificate.php?id=<?php echo $row['certificate_id']; ?>" class="btn btn-sm btn-outline-warning" title="Edit"><i class="bi bi-pencil-square"></i></a>
-                            <a href="delete_certificate.php?id=<?php echo $row['certificate_id']; ?>" class="btn btn-sm btn-outline-danger" title="Delete" onclick="return confirm('Are you sure you want to delete this certificate?');"><i class="bi bi-trash"></i></a>
+                            <a href="certificates/view?id=<?php echo $row['certificate_id']; ?>" class="btn btn-sm btn-outline-primary" title="View"><i class="bi bi-eye"></i></a>
+                            <a href="certificates/edit?id=<?php echo $row['certificate_id']; ?>" class="btn btn-sm btn-outline-warning" title="Edit"><i class="bi bi-pencil-square"></i></a>
+                            <a href="certificates/delete?id=<?php echo $row['certificate_id']; ?>" class="btn btn-sm btn-outline-danger" title="Delete" onclick="return confirm('Are you sure you want to delete this certificate?');"><i class="bi bi-trash"></i></a>
                         </div>
                     </td>
                 </tr>

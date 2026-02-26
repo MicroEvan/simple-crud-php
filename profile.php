@@ -22,6 +22,7 @@ $user = $result->fetch_assoc();
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <base href="<?php echo rtrim(dirname($_SERVER['SCRIPT_NAME']), '/\\') . '/'; ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
@@ -71,7 +72,7 @@ $user = $result->fetch_assoc();
 <div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-      <form method="POST" action="update_profile.php">
+      <form method="POST" action="users/update-profile">
         <div class="modal-header">
           <h5 class="modal-title" id="updateModalLabel"><i class="bi bi-pencil-square me-2" style="color:var(--primary)"></i>Update Profile</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>

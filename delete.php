@@ -10,4 +10,4 @@ $query = "DELETE FROM `user` WHERE id=$id";
 $result = mysqli_query($conn,$query);
 
 //redirecting to the display page (index.php in our case)
-header("Location:index.php");
+header("Location:dashboard");

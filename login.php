@@ -32,9 +32,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 // Redirect based on user role
                 if ($user['role'] === 'admin') {
-                    header("Location: admin_dashboard.php"); // Redirect to admin dashboard
+                    header("Location: dashboard"); // Redirect to admin dashboard
                 } else {
-                    header("Location: user_dashboard.php"); // Redirect to user dashboard
+                    header("Location: dashboard"); // Redirect to user dashboard
                 }
                 exit();
             } else {
@@ -53,6 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <base href="<?php echo rtrim(dirname($_SERVER['SCRIPT_NAME']), '/\\') . '/'; ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
@@ -184,7 +185,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </form>
 
     <div class="login-footer">
-        <a href="register.php">Don't have an account? Register</a>
+        <a href="register">Don't have an account? Register</a>
     </div>
 </div>
 

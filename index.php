@@ -4,10 +4,10 @@ session_start(); // Start the session
 // Check if the user is logged in and redirect to the appropriate dashboard
 if (isset($_SESSION['user_id'])) {
     if ($_SESSION['user_role'] === 'admin') {
-        header("Location: admin_dashboard.php"); // Redirect to admin dashboard
+        header("Location: dashboard"); // Redirect to admin dashboard
         exit();
     } else {
-        header("Location: user_dashboard.php"); // Redirect to user dashboard
+        header("Location: dashboard"); // Redirect to user dashboard
         exit();
     }
 }
@@ -17,6 +17,7 @@ if (isset($_SESSION['user_id'])) {
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <base href="<?php echo rtrim(dirname($_SERVER['SCRIPT_NAME']), '/\\') . '/'; ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
@@ -38,10 +39,10 @@ if (isset($_SESSION['user_id'])) {
         <p style="color:#777;font-size:14px;margin-bottom:32px;">Manage your pressure test certificates efficiently and securely.</p>
 
         <div class="d-grid gap-3">
-            <a href="login.php" class="btn btn-dark-login" style="border-radius:24px; padding:12px; font-size:16px; font-weight:600; background:#222; color:#fff;">
+            <a href="login" class="btn btn-dark-login" style="border-radius:24px; padding:12px; font-size:16px; font-weight:600; background:#222; color:#fff;">
                 <i class="bi bi-box-arrow-in-right me-2"></i>Login
             </a>
-            <a href="register.php" class="btn" style="border-radius:24px; padding:12px; font-size:16px; font-weight:600; background:var(--primary); color:#fff; border:none;">
+            <a href="register" class="btn" style="border-radius:24px; padding:12px; font-size:16px; font-weight:600; background:var(--primary); color:#fff; border:none;">
                 <i class="bi bi-person-plus me-2"></i>Register
             </a>
         </div>

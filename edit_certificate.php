@@ -3,7 +3,7 @@ session_start();
 
 // Check if user is logged in and is an admin
 if (!isset($_SESSION['user_id']) || $_SESSION['user_role'] !== 'admin') {
-    header("Location: login.php"); // Redirect to login if not logged in or not an admin
+    header("Location: login"); // Redirect to login if not logged in or not an admin
     exit();
 }
 
@@ -32,6 +32,7 @@ while($row = mysqli_fetch_array($results)){
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <base href="<?php echo rtrim(dirname($_SERVER['SCRIPT_NAME']), '/\\') . '/'; ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
@@ -49,7 +50,7 @@ while($row = mysqli_fetch_array($results)){
     <!-- Page Header -->
     <div class="page-header">
         <h2><i class="bi bi-pencil-square me-2" style="color:var(--primary)"></i>Edit Certificate</h2>
-        <a href="admin_dashboard.php" class="btn btn-outline-secondary"><i class="bi bi-arrow-left me-1"></i>Back</a>
+        <a href="dashboard" class="btn btn-outline-secondary"><i class="bi bi-arrow-left me-1"></i>Back</a>
     </div>
 
     <?php if (!empty($_SESSION['errors'])): ?>
@@ -66,7 +67,7 @@ while($row = mysqli_fetch_array($results)){
     <?php endif; ?>
 
     <div class="card-chato">
-        <form method="post" name="edit-form" action="certeditprocess.php">
+        <form method="post" name="edit-form" action="certificates/update">
             <input type="hidden" name="certificate_id" value="<?php echo $certificate_id; ?>">
             <div class="row g-3">
                 <div class="col-12">
@@ -105,7 +106,7 @@ while($row = mysqli_fetch_array($results)){
             </div>
             <hr style="margin:24px 0 16px; border-color:#eee;">
             <div class="d-flex justify-content-end gap-2">
-                <a class="btn btn-outline-secondary" href="admin_dashboard.php">Cancel</a>
+                <a class="btn btn-outline-secondary" href="dashboard">Cancel</a>
                 <button class="btn btn-primary" type="submit" name="update"><i class="bi bi-check-lg me-1"></i>Update</button>
             </div>
         </form>

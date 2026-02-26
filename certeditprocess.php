@@ -30,7 +30,7 @@ if (isset($_POST['update'])) {
 
     if (!empty($errors)) {
         $_SESSION['errors'] = $errors;
-        header("Location: edit_certificate.php?id=" . urlencode($certificate_id));
+        header("Location: certificates/edit?id=" . urlencode($certificate_id));
         exit();
     }
 
@@ -44,22 +44,22 @@ if (isset($_POST['update'])) {
         if ($stmt->execute()) {
             $_SESSION['success'] = "Certificate updated successfully.";
             $stmt->close();
-            header("Location: admin_dashboard.php");
+            header("Location: dashboard");
             exit();
         } else {
             $_SESSION['errors'] = ["Could not update the certificate. Please try again."];
-            header("Location: edit_certificate.php?id=" . urlencode($certificate_id));
+            header("Location: certificates/edit?id=" . urlencode($certificate_id));
             exit();
         }
     } catch (mysqli_sql_exception $e) {
         error_log("SQL Error in certeditprocess.php: " . $e->getMessage());
         $_SESSION['errors'] = ["Something went wrong while updating the certificate. Please contact the administrator."];
-        header("Location: edit_certificate.php?id=" . urlencode($certificate_id));
+        header("Location: certificates/edit?id=" . urlencode($certificate_id));
         exit();
     } catch (Exception $e) {
         error_log("Error in certeditprocess.php: " . $e->getMessage());
         $_SESSION['errors'] = ["An unexpected error occurred. Please try again later."];
-        header("Location: edit_certificate.php?id=" . urlencode($certificate_id));
+        header("Location: certificates/edit?id=" . urlencode($certificate_id));
         exit();
     }
 }

@@ -1,6 +1,6 @@
 <?php
 if (!isset($_SESSION['user_id']) || $_SESSION['user_role'] !== 'admin') {
-    header("Location: login.php");
+    header("Location: login");
     exit();
 }
 
@@ -32,7 +32,7 @@ $result = $conn->query("SELECT * FROM user WHERE status = 'inactive'");
                         <td><?php echo $user['id']; ?></td>
                         <td style="font-weight:500;"><?php echo htmlspecialchars($user['name']); ?></td>
                         <td style="text-align:center;">
-                            <form action="approve_user.php" method="POST" style="display:inline;">
+                            <form action="users/approve" method="POST" style="display:inline;">
                                 <input type="hidden" name="user_id" value="<?php echo $user['id']; ?>">
                                 <button type="submit" class="btn btn-sm btn-success"><i class="bi bi-check-lg me-1"></i>Approve</button>
                             </form>

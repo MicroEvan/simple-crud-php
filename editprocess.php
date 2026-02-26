@@ -27,7 +27,7 @@ if(isset($_POST['update'])) {
         $stmt->bind_param("sssi", $name, $age, $email, $id);
 
         if ($stmt->execute()) {
-            header("Location: index.php");
+            header("Location: dashboard");
             exit();
         } else {
             echo "Error updating record: " . $conn->error;

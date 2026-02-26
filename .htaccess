@@ -1,0 +1,37 @@
+RewriteEngine On
+RewriteBase /chato-certificates-main/chato-certificates/
+
+# If it's a real file or directory, serve it directly
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# ─── Clean URL routes ───
+
+# Home
+RewriteRule ^$ index.php [L]
+
+# Auth
+RewriteRule ^login$ login.php [L,QSA]
+RewriteRule ^register$ register.php [L,QSA]
+RewriteRule ^logout$ logout.php [L]
+
+# Dashboard
+RewriteRule ^dashboard$ admin_dashboard.php [L,QSA]
+
+# Certificates
+RewriteRule ^certificates/add$ add_certificate.php [L,QSA]
+RewriteRule ^certificates/edit$ edit_certificate.php [L,QSA]
+RewriteRule ^certificates/view$ view_certificate.php [L,QSA]
+RewriteRule ^certificates/delete$ delete_certificate.php [L,QSA]
+RewriteRule ^certificates/pdf$ generate_pdf.php [L,QSA]
+RewriteRule ^certificates/update$ certeditprocess.php [L,QSA]
+
+# Users
+RewriteRule ^users$ admin_user_management.php [L,QSA]
+RewriteRule ^users/add$ add_user.php [L,QSA]
+RewriteRule ^users/approve$ approve_user.php [L,QSA]
+RewriteRule ^users/update-profile$ update_profile.php [L,QSA]
+
+# Profile
+RewriteRule ^profile$ profile.php [L,QSA]

@@ -3,7 +3,7 @@ session_start();
 
 // Check if user is logged in and is an admin
 if (!isset($_SESSION['user_id']) || $_SESSION['user_role'] !== 'admin') {
-    header("Location: login.php"); // Redirect to login if not logged in or not an admin
+    header("Location: login"); // Redirect to login if not logged in or not an admin
     exit();
 }
 
@@ -59,6 +59,7 @@ if (isset($_POST['Submit'])) {
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <base href="<?php echo rtrim(dirname($_SERVER['SCRIPT_NAME']), '/\\') . '/'; ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
@@ -76,7 +77,7 @@ if (isset($_POST['Submit'])) {
     <!-- Page Header -->
     <div class="page-header">
         <h2><i class="bi bi-file-earmark-plus me-2" style="color:var(--primary)"></i>New Certificate</h2>
-        <a href="admin_dashboard.php" class="btn btn-outline-secondary"><i class="bi bi-arrow-left me-1"></i>Back</a>
+        <a href="dashboard" class="btn btn-outline-secondary"><i class="bi bi-arrow-left me-1"></i>Back</a>
     </div>
 
     <?php if (!empty($errors)): ?>
@@ -94,13 +95,13 @@ if (isset($_POST['Submit'])) {
     <?php if (!empty($success)): ?>
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             <i class="bi bi-check-circle me-2"></i><?php echo htmlspecialchars($success); ?>
-            <a href="admin_dashboard.php" class="alert-link ms-2">Back to Dashboard</a>
+            <a href="dashboard" class="alert-link ms-2">Back to Dashboard</a>
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     <?php endif; ?>
 
     <div class="card-chato">
-        <form action="add_certificate.php" method="post" name="add-form">
+        <form action="certificates/add" method="post" name="add-form">
             <div class="row g-3">
                 <div class="col-12">
                     <label class="form-label">Customer Name</label>
@@ -140,7 +141,7 @@ if (isset($_POST['Submit'])) {
             </div>
             <hr style="margin:24px 0 16px; border-color:#eee;">
             <div class="d-flex justify-content-end gap-2">
-                <a class="btn btn-outline-secondary" href="admin_dashboard.php">Cancel</a>
+                <a class="btn btn-outline-secondary" href="dashboard">Cancel</a>
                 <button class="btn btn-primary" type="submit" name="Submit"><i class="bi bi-check-lg me-1"></i>Add Certificate</button>
             </div>
         </form>
