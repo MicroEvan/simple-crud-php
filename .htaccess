@@ -1,5 +1,5 @@
 RewriteEngine On
-RewriteBase /chato-certificates-main/chato-certificates/
+
 
 # If it's a real file or directory, serve it directly
 RewriteCond %{REQUEST_FILENAME} -f [OR]
